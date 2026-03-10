@@ -133,7 +133,7 @@ SCREENER_ASSET="screener-linux-amd64"
 [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]] && SCREENER_ASSET="screener-linux-arm64"
 
 mkdir -p "$HOME/.local/bin"
-curl -fsSLL \
+curl -fsSL \
   "https://github.com/vedanth-jadhav/screener/releases/download/v0.1.0/${SCREENER_ASSET}" \
   -o "$HOME/.local/bin/screener"
 chmod +x "$HOME/.local/bin/screener"
@@ -146,7 +146,7 @@ echo "PASS  screener installed → $HOME/.local/bin/screener"
 step "CLIProxy (Gemini auth)"
 
 if [[ ! -f "$HOME/cliproxyapi/cli-proxy-api" ]]; then
-  curl -fsSLL \
+  curl -fsSL \
     https://raw.githubusercontent.com/brokechubb/cliproxyapi-installer/refs/heads/master/cliproxyapi-installer \
     | bash
 fi
