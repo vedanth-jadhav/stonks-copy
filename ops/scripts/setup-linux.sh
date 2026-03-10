@@ -132,11 +132,12 @@ step "Screener CLI binary"
 SCREENER_ASSET="screener-linux-amd64"
 [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]] && SCREENER_ASSET="screener-linux-arm64"
 
+mkdir -p "$HOME/.local/bin"
 curl -fsSL \
   "https://github.com/vedanth-jadhav/screener/releases/download/v0.1.0/${SCREENER_ASSET}" \
   -o "$HOME/.local/bin/screener"
 chmod +x "$HOME/.local/bin/screener"
-echo "PASS  screener installed → "$HOME/.local/bin/screener""
+echo "PASS  screener installed → $HOME/.local/bin/screener"
 
 # ---------------------------------------------------------------------------
 # 6. CLIProxy — install + headless Gemini login
@@ -168,8 +169,15 @@ step ".env configuration"
 if [[ ! -f "$ENV_FILE" ]]; then
   cp "$ROOT_DIR/.env.example" "$ENV_FILE"
   # Apply VPS-safe defaults
-  sed -i 's|^SCREENER_BINARY_PATH=.*|SCREENER_BINARY_PATH="$HOME/.local/bin/screener"|' "$ENV_FILE"
-  sed -i 's|^WEB_HOST=.*|WEB_HOST=0.0.0.0|' "$ENV_FILE"
+  if sed --version 2>/dev/null | grep -q GNU; then
+    sed -i 's|^SCREENER_BINARY_PATH=.*|SCREENER_BINARY_PATH='"$HOME"'/.local/bin/screener|' "$ENV_FILE"
+    sed -i 's|^WEB_HOST=.*|WEB_HOST=0.0.0.0|' "$ENV_FILE"
+    sed -i 's|^WEB_PASSWORD=.*|WEB_PASSWORD=quant_secure_passwd_123!|' "$ENV_FILE"
+  else
+    sed -i '' 's|^SCREENER_BINARY_PATH=.*|SCREENER_BINARY_PATH='"$HOME"'/.local/bin/screener|' "$ENV_FILE"
+    sed -i '' 's|^WEB_HOST=.*|WEB_HOST=0.0.0.0|' "$ENV_FILE"
+    sed -i '' 's|^WEB_PASSWORD=.*|WEB_PASSWORD=quant_secure_passwd_123!|' "$ENV_FILE"
+  fi
   echo "PASS  .env created from .env.example"
   echo ""
   echo "  Edit $ENV_FILE and fill in:"
