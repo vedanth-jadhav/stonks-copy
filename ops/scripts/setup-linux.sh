@@ -134,9 +134,9 @@ SCREENER_ASSET="screener-linux-amd64"
 
 curl -fsSL \
   "https://github.com/vedanth-jadhav/screener/releases/download/v0.1.0/${SCREENER_ASSET}" \
-  -o /usr/local/bin/screener
-chmod +x /usr/local/bin/screener
-echo "PASS  screener installed → /usr/local/bin/screener"
+  -o "$HOME/.local/bin/screener"
+chmod +x "$HOME/.local/bin/screener"
+echo "PASS  screener installed → "$HOME/.local/bin/screener""
 
 # ---------------------------------------------------------------------------
 # 6. CLIProxy — install + headless Gemini login
@@ -168,7 +168,7 @@ step ".env configuration"
 if [[ ! -f "$ENV_FILE" ]]; then
   cp "$ROOT_DIR/.env.example" "$ENV_FILE"
   # Apply VPS-safe defaults
-  sed -i 's|^SCREENER_BINARY_PATH=.*|SCREENER_BINARY_PATH=/usr/local/bin/screener|' "$ENV_FILE"
+  sed -i 's|^SCREENER_BINARY_PATH=.*|SCREENER_BINARY_PATH="$HOME/.local/bin/screener"|' "$ENV_FILE"
   sed -i 's|^WEB_HOST=.*|WEB_HOST=0.0.0.0|' "$ENV_FILE"
   echo "PASS  .env created from .env.example"
   echo ""
