@@ -1,0 +1,5 @@
+[console_scripts]
+quant-trading = quant_trading.main:main
+quant-trading-once = quant_trading.main:run_once
+quant-trading-runner = quant_trading.runner:main
+quant-trading-web = quant_trading.web.app:main

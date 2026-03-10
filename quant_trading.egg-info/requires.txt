@@ -1,0 +1,17 @@
+pydantic>=2.11.0
+sqlalchemy>=1.4.0
+apscheduler>=3.11.0
+httpx>=0.28.0
+fastapi>=0.116.0
+uvicorn>=0.35.0
+itsdangerous>=2.2.0
+numpy>=2.0.0
+pandas>=2.2.0
+scipy>=1.14.0
+statsmodels>=0.14.0
+structlog>=24.0.0
+nse[runtime]>=2.1.0
+
+[runtime]
+yfinance>=0.2.0
+feedparser>=6.0.0

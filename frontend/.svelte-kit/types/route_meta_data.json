@@ -1,0 +1,33 @@
+{
+	"/": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/blotter": [
+		"src/routes/+layout.ts"
+	],
+	"/command": [
+		"src/routes/+layout.ts"
+	],
+	"/config": [
+		"src/routes/+layout.ts"
+	],
+	"/gemini-oauth": [
+		"src/routes/+layout.ts"
+	],
+	"/logs": [
+		"src/routes/+layout.ts"
+	],
+	"/memory": [
+		"src/routes/+layout.ts"
+	],
+	"/portfolio": [
+		"src/routes/+layout.ts"
+	],
+	"/reports": [
+		"src/routes/+layout.ts"
+	],
+	"/setup": [
+		"src/routes/+layout.ts"
+	]
+}

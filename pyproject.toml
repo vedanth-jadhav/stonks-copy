@@ -1,0 +1,40 @@
+[project]
+name = "quant-trading"
+version = "0.1.0"
+description = "Restart-safe paper quant trading system for Indian equities."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "pydantic>=2.11.0",
+  "sqlalchemy>=1.4.0",
+  "apscheduler>=3.11.0",
+  "httpx>=0.28.0",
+  "fastapi>=0.116.0",
+  "uvicorn>=0.35.0",
+  "itsdangerous>=2.2.0",
+  "numpy>=2.0.0",
+  "pandas>=2.2.0",
+  "scipy>=1.14.0",
+  "statsmodels>=0.14.0",
+  "structlog>=24.0.0",
+  "nse[runtime]>=2.1.0",
+]
+
+[project.scripts]
+quant-trading = "quant_trading.main:main"
+quant-trading-runner = "quant_trading.runner:main"
+quant-trading-once = "quant_trading.main:run_once"
+quant-trading-web = "quant_trading.web.app:main"
+
+[project.optional-dependencies]
+runtime = [
+  "yfinance>=0.2.0",
+  "feedparser>=6.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["quant_trading*"]
